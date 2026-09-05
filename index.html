@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Boell Representações: mais de 35 anos de representação comercial B2B em MRO, ferramentas, ferragens, autopeças e agro. Armários industriais CMB com exclusividade, ferramentas Milwaukee e lubrificação Steels Prolube no interior de São Paulo.">
-<meta name="keywords" content="Boell Representações, MRO, armários industriais, armários industriais CMB, ferramentas industriais, Milwaukee, Bovenau, Maqtron, Steels Prolube, ferragens, autopeças, representação comercial B2B, interior de São Paulo">
+<meta name="description" content="Boell Representações: mais de 35 anos de representação comercial B2B em MRO, ferramentas, ferragens, autopeças e agro. Armários industriais CMB com exclusividade, ferramentas Milwaukee, macacos Bovenau, máquinas Maqtron e lubrificação Steels Prolube no interior de São Paulo. Blog com dicas de uso e manutenção por marca.">
+<meta name="keywords" content="Boell Representações, MRO, armários industriais, armários industriais CMB, ferramentas industriais, Milwaukee, Bovenau, Maqtron, Steels Prolube, ferragens, autopeças, representação comercial B2B, interior de São Paulo, dicas de manutenção industrial, blog industrial">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Boell Representações">
 <link rel="canonical" href="https://www.boellrepresentacoes.com.br/">
@@ -446,9 +446,89 @@
     display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none;
   }
   .chat-form button:hover{ background:var(--brand-2); }
+
+  /* Parallax helpers */
+  .hero-art{ will-change:transform; }
+  .hero-art .plate{ will-change:transform; transition:transform .12s ease-out; }
+  @media (prefers-reduced-motion: reduce){ .hero-art, .hero-art .plate{ transition:none !important; } }
+
+  /* Brand marquee (banner rolante) */
+  .marquee-band{ background:var(--brand); border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08); overflow:hidden; padding:22px 0; }
+  .marquee-band .marquee-track{ display:flex; width:max-content; gap:64px; animation:marqueeScroll 26s linear infinite; }
+  .marquee-band:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-item{ display:flex; align-items:center; gap:10px; flex:none; font-family:'Barlow Condensed'; font-weight:800; font-size:1.6rem; letter-spacing:.5px; color:rgba(255,255,255,.92); white-space:nowrap; }
+  .marquee-item .dot-sep{ width:6px; height:6px; border-radius:50%; background:var(--accent); }
+  @keyframes marqueeScroll{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  @media (prefers-reduced-motion: reduce){ .marquee-band .marquee-track{ animation:none; flex-wrap:wrap; } }
+
+  /* Mascot speech-bubble hint (pops up from the floating avatar, "as if he's talking") */
+  .mascot-hint{
+    position:fixed; left:22px; bottom:98px; z-index:79; max-width:230px;
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    padding:12px 28px 12px 14px; box-shadow:var(--shadow-lg); font-size:.85rem; line-height:1.4; color:var(--ink);
+    opacity:0; transform:translateY(10px) scale(.95); pointer-events:none;
+    transition:opacity .3s ease, transform .3s ease;
+  }
+  .mascot-hint.show{ opacity:1; transform:translateY(0) scale(1); pointer-events:auto; cursor:pointer; }
+  .mascot-hint:hover{ border-color:var(--brand-2); }
+  .mascot-hint::after{
+    content:''; position:absolute; left:26px; bottom:-7px; width:14px; height:14px;
+    background:var(--surface); border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    transform:rotate(45deg);
+  }
+  .mascot-hint p{ margin:0; color:var(--ink); max-width:none; }
+  .mascot-hint-close{
+    position:absolute; top:6px; right:7px; background:none; border:none; color:var(--ink-soft);
+    font-size:1rem; line-height:1; cursor:pointer; padding:3px;
+  }
+  .mascot-hint-close:hover{ color:var(--ink); }
+  @media (max-width:600px){ .mascot-hint{ left:16px; bottom:80px; } }
+  @media (prefers-reduced-motion: reduce){ .mascot-hint{ transition:none; } }
+
+  /* Products by brand */
+  .brand-products{ display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:32px; }
+  .bp-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:22px; transition:transform .18s ease, box-shadow .18s ease; }
+  .bp-card:hover{ transform:translateY(-4px); box-shadow:var(--shadow-lg); }
+  .bp-card .wordmark{ font-family:'Barlow Condensed'; font-weight:800; font-size:1.35rem; }
+  .bp-card ul{ list-style:none; margin:12px 0 0; padding:0; display:grid; gap:6px; }
+  .bp-card li{ font-size:.84rem; color:var(--ink-soft); display:flex; gap:8px; }
+  .bp-card li::before{ content:''; width:5px; height:5px; margin-top:7px; background:var(--brand-2); border-radius:1px; flex:none; }
+  .bp-card a{ display:inline-block; margin-top:14px; font-size:.82rem; font-weight:600; color:var(--brand-2); text-decoration:none; }
+  .bp-card a:hover{ text-decoration:underline; }
+
+  /* Instagram CTA */
+  .insta-cta{ background:linear-gradient(135deg,#123A5E,#1E6FA6); color:#fff; }
+  .insta-cta .wrap{ display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .insta-cta h3{ color:#fff; font-size:clamp(1.4rem,2.6vw,1.9rem); margin-bottom:6px; }
+  .insta-cta p{ color:rgba(255,255,255,.82); margin:0; }
+  .insta-cta .btn-insta{ background:#fff; color:var(--brand); }
+  .insta-cta .btn-insta:hover{ transform:translateY(-2px); box-shadow:var(--shadow-lg); }
+
+  /* Blog */
+  .blog-filters{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:26px; }
+  .blog-filter{ font-family:'IBM Plex Mono'; font-size:.72rem; font-weight:600; letter-spacing:.04em; padding:7px 14px; border-radius:100px; border:1px solid var(--line); background:var(--surface); color:var(--ink-soft); cursor:pointer; transition:all .15s ease; }
+  .blog-filter:hover{ border-color:var(--brand-2); color:var(--brand-2); }
+  .blog-filter.active{ background:var(--brand); border-color:var(--brand); color:#fff; }
+  .blog-card{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius-lg); padding:22px; transition:transform .18s ease, box-shadow .18s ease; }
+  .blog-card:hover{ transform:translateY(-3px); box-shadow:var(--shadow); }
+  .blog-card summary{ cursor:pointer; list-style:none; }
+  .blog-card summary::-webkit-details-marker{ display:none; }
+  .blog-card .bc-top{ display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; }
+  .blog-card .bc-more{ font-size:.8rem; font-weight:600; color:var(--brand-2); }
+  .blog-card[open] .bc-more::after{ content:' ↑'; }
+  .blog-card:not([open]) .bc-more::after{ content:' ↓'; }
+  .blog-card .bc-tip{ margin-top:12px; padding-top:12px; border-top:1px dashed var(--line); font-size:.88rem; }
+
+  /* Footer social icons */
+  .foot-social{ display:flex; gap:10px; margin-top:14px; }
+  .foot-social a{
+    width:38px; height:38px; border-radius:50%; background:rgba(255,255,255,.1); display:flex; align-items:center;
+    justify-content:center; color:#fff; transition:transform .18s ease, background .18s ease;
+  }
+  .foot-social a:hover{ transform:translateY(-2px); background:rgba(255,255,255,.2); }
+  .foot-social a.ig:hover{ background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888); }
+  .foot-social a.wa:hover{ background:#25D366; }
 </style>
-</head>
-<body>
 
 <header>
   <div class="wrap nav">
@@ -464,7 +544,7 @@
       <a href="#produtos">Produtos</a>
       <a href="#atuacao">Atuação</a>
       <a href="#diferenciais">Diferenciais</a>
-      <a href="#novidades">Novidades</a>
+      <a href="#blog">Blog</a>
       <a href="#contato" class="btn btn-primary" style="margin-top:8px;">Solicitar cotação</a>
     </nav>
     <div class="nav-ctas">
@@ -508,6 +588,22 @@
       </div>
     </div>
   </section>
+
+  <!-- BANNER ROLANTE DE MARCAS -->
+  <div class="marquee-band" aria-label="Marcas representadas pela Boell">
+    <div class="marquee-track">
+      <span class="marquee-item">CMB<span class="dot-sep"></span></span>
+      <span class="marquee-item">Milwaukee<span class="dot-sep"></span></span>
+      <span class="marquee-item">Bovenau<span class="dot-sep"></span></span>
+      <span class="marquee-item">Maqtron<span class="dot-sep"></span></span>
+      <span class="marquee-item">Steels Prolube<span class="dot-sep"></span></span>
+      <span class="marquee-item">CMB<span class="dot-sep"></span></span>
+      <span class="marquee-item">Milwaukee<span class="dot-sep"></span></span>
+      <span class="marquee-item">Bovenau<span class="dot-sep"></span></span>
+      <span class="marquee-item">Maqtron<span class="dot-sep"></span></span>
+      <span class="marquee-item">Steels Prolube<span class="dot-sep"></span></span>
+    </div>
+  </div>
 
   <!-- QUEM SOMOS -->
   <section id="quem-somos">
@@ -643,6 +739,64 @@
           </div>
         </div>
       </div>
+
+      <div class="brand-products reveal">
+        <div class="bp-card">
+          <span class="wordmark">CMB</span>
+          <ul>
+            <li>Armários com porta de correr e painéis para ferramentas</li>
+            <li>Bancadas fixas e móveis (madeira ou aço)</li>
+            <li>Carrinhos de ferramentas com múltiplas gavetas</li>
+            <li>Gaveteiros modulares (4 a 14 gavetas)</li>
+            <li>Projetos sob medida — CMB On Demand</li>
+          </ul>
+          <a href="https://wa.me/5519988383736?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20produtos%20CMB." target="_blank" rel="noopener">Consultar produtos CMB →</a>
+        </div>
+        <div class="bp-card">
+          <span class="wordmark">Milwaukee</span>
+          <ul>
+            <li>Sistemas a bateria M12™ e M18™ FUEL™</li>
+            <li>Furadeiras, parafusadeiras e chaves de impacto</li>
+            <li>Esmerilhadeiras e ferramentas para metalworking</li>
+            <li>Serras SAWZALL® e serras circulares/tico-tico</li>
+            <li>Ferramentas para elétrica e instalação predial</li>
+          </ul>
+          <a href="https://wa.me/5519988383736?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20produtos%20Milwaukee." target="_blank" rel="noopener">Consultar produtos Milwaukee →</a>
+        </div>
+        <div class="bp-card">
+          <span class="wordmark">Bovenau</span>
+          <ul>
+            <li>Macacos hidráulicos manuais (linha MT)</li>
+            <li>Talhas e guinchos hidráulicos dobráveis</li>
+            <li>Prensas hidráulicas industriais</li>
+            <li>Cavaletes e equipamentos de movimentação</li>
+            <li>Cilindros e bombas de alta pressão</li>
+          </ul>
+          <a href="https://wa.me/5519988383736?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20produtos%20Bovenau." target="_blank" rel="noopener">Consultar produtos Bovenau →</a>
+        </div>
+        <div class="bp-card">
+          <span class="wordmark">Maqtron</span>
+          <ul>
+            <li>Linha agrícola: picadores, desintegradores, ensiladeiras</li>
+            <li>Moendas de cana e limpadores de cana</li>
+            <li>Betoneiras para construção civil (M120 a M400)</li>
+            <li>Carretas de madeira, metálicas e caçamba</li>
+            <li>Chassis, rodas e componentes complementares</li>
+          </ul>
+          <a href="https://wa.me/5519988383736?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20produtos%20Maqtron." target="_blank" rel="noopener">Consultar produtos Maqtron →</a>
+        </div>
+        <div class="bp-card">
+          <span class="wordmark">Steels Prolube</span>
+          <ul>
+            <li>Bombas, carretéis e propulsoras de graxa</li>
+            <li>Bicos e kits completos de abastecimento</li>
+            <li>Filtros, mangueiras e reguladores de ar comprimido</li>
+            <li>Calibradores, válvulas e kits de borracharia</li>
+            <li>Acessórios de lubrificação e medição</li>
+          </ul>
+          <a href="https://wa.me/5519988383736?text=Ol%C3%A1%2C%20quero%20saber%20mais%20sobre%20os%20produtos%20Steels%20Prolube." target="_blank" rel="noopener">Consultar produtos Steels Prolube →</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -729,37 +883,92 @@
     </div>
   </section>
 
-  <!-- NOVIDADES -->
-  <section id="novidades" class="alt">
+  <!-- BLOG -->
+  <section id="blog" class="alt">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="eyebrow">Novidades</span>
-        <h2>Comunicados, campanhas e bastidores da Boell.</h2>
-        <p>Espaço para manter clientes e parceiros informados sobre reajustes de tabela, recessos, campanhas e lançamentos.</p>
+        <span class="eyebrow">Blog Boell</span>
+        <h2>Dicas de uso, manutenção e novidades por marca.</h2>
+        <p>Conteúdo prático separado por marca representada, com utilidade real para quem compra, revende ou opera no chão de fábrica.</p>
       </div>
-      <div class="news-grid reveal">
-        <article class="news-card">
-          <span class="news-tag">Comunicado</span>
-          <span class="news-date mono">Tabela de preços</span>
-          <h4>Reajuste de tabela — linha Milwaukee</h4>
-          <p>Acompanhe aqui as novas condições vigentes e prazos para pedidos na tabela atual.</p>
-          <a href="#contato">Falar com um consultor →</a>
-        </article>
-        <article class="news-card">
-          <span class="news-tag">Campanha</span>
-          <span class="news-date mono">Armários CMB</span>
-          <h4>Condições especiais para armários industriais</h4>
-          <p>Campanha com prazos e condições diferenciadas para revenda dos armários CMB neste período.</p>
-          <a href="#contato">Ver condições →</a>
-        </article>
-        <article class="news-card">
-          <span class="news-tag">Aviso</span>
-          <span class="news-date mono">Calendário</span>
-          <h4>Recesso e calendário de atendimento</h4>
-          <p>Confira datas de recesso e o calendário de atendimento da equipe comercial Boell.</p>
-          <a href="#contato">Consultar equipe →</a>
-        </article>
+      <div class="blog-filters reveal" id="blog-filters">
+        <button class="blog-filter active" data-filter="todas">Todas</button>
+        <button class="blog-filter" data-filter="cmb">CMB</button>
+        <button class="blog-filter" data-filter="milwaukee">Milwaukee</button>
+        <button class="blog-filter" data-filter="bovenau">Bovenau</button>
+        <button class="blog-filter" data-filter="maqtron">Maqtron</button>
+        <button class="blog-filter" data-filter="prolube">Steels Prolube</button>
       </div>
+      <div class="news-grid reveal" id="blog-grid">
+        <details class="blog-card" data-brand="cmb">
+          <summary>
+            <div class="bc-top"><span class="news-tag">CMB</span><span class="news-date mono">Organização</span></div>
+            <h4>Como organizar o chão de fábrica com armários CMB</h4>
+            <p>Um bom layout de armazenagem reduz tempo de busca por ferramentas e evita perda de peças pequenas.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">Separe por frequência de uso: itens do dia a dia em gavetas na altura das mãos, itens pesados nas prateleiras inferiores. Use os painéis com perfil para ferramentas de silhueta (sombreado), assim fica visível na hora qual item falta devolver. Para múltiplos turnos, prefira gaveteiros com trava central — organiza e ainda protege o patrimônio.</p>
+        </details>
+        <details class="blog-card" data-brand="milwaukee">
+          <summary>
+            <div class="bc-top"><span class="news-tag">Milwaukee</span><span class="news-date mono">Manutenção</span></div>
+            <h4>5 dicas para prolongar a vida útil das baterias M12/M18</h4>
+            <p>Pequenos cuidados no dia a dia evitam perda de performance e reduzem custo de reposição.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">1) Evite carregar a bateria ainda quente, deixe esfriar alguns minutos antes. 2) Não deixe a ferramenta descarregar 100% com frequência. 3) Guarde em local seco, longe de calor extremo. 4) Limpe os contatos metálicos periodicamente. 5) Use sempre o carregador original da linha M12/M18 FUEL para preservar a célula.</p>
+        </details>
+        <details class="blog-card" data-brand="bovenau">
+          <summary>
+            <div class="bc-top"><span class="news-tag">Bovenau</span><span class="news-date mono">Segurança</span></div>
+            <h4>Como escolher o macaco hidráulico certo para sua operação</h4>
+            <p>Capacidade de carga e curso do pistão são os primeiros pontos a avaliar antes de comprar.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">Verifique sempre a capacidade máxima de carga do macaco (em toneladas) frente ao peso real a ser levantado, com margem de segurança. Avalie também a altura mínima e máxima de curso necessária para o veículo ou equipamento. Faça manutenção preventiva no sistema hidráulico e nunca ultrapasse a capacidade nominal indicada pelo fabricante.</p>
+        </details>
+        <details class="blog-card" data-brand="maqtron">
+          <summary>
+            <div class="bc-top"><span class="news-tag">Maqtron</span><span class="news-date mono">Operação</span></div>
+            <h4>Manutenção preventiva em máquinas agrícolas: por onde começar</h4>
+            <p>Rotina simples de inspeção evita paradas não planejadas na safra ou na obra.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">Confira lubrificação de rolamentos e correntes antes de cada uso intenso, inspecione facas e martelos de picadores/desintegradores quanto a desgaste, e mantenha o sistema elétrico (no caso das moendas elétricas) livre de umidade. Em betoneiras, lave o tambor ao final do expediente para evitar acúmulo de resíduo de concreto.</p>
+        </details>
+        <details class="blog-card" data-brand="prolube">
+          <summary>
+            <div class="bc-top"><span class="news-tag">Steels Prolube</span><span class="news-date mono">Boas práticas</span></div>
+            <h4>Lubrificação industrial: quando usar graxa e quando usar óleo</h4>
+            <p>Escolher o insumo certo evita desgaste prematuro e reduz custo de manutenção.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">Graxa é indicada para pontos de baixa rotação e difícil acesso, onde é preciso um filme lubrificante que não escorra (rolamentos, mancais). Óleo é melhor para sistemas de alta rotação e dissipação de calor (engrenagens, redutores). Use bombas e carretéis Steels Prolube para dosar a quantidade certa e evitar desperdício ou excesso, que também prejudica o equipamento.</p>
+        </details>
+        <details class="blog-card" data-brand="prolube">
+          <summary>
+            <div class="bc-top"><span class="news-tag">Steels Prolube</span><span class="news-date mono">Frotas</span></div>
+            <h4>Calibragem correta de pneus: por que ela economiza combustível</h4>
+            <p>Pneus com pressão errada aumentam consumo e reduzem vida útil da banda de rodagem.</p>
+            <span class="bc-more">Ler dica</span>
+          </summary>
+          <p class="bc-tip">Calibre os pneus com o veículo frio, seguindo a pressão indicada pelo fabricante — nunca a impressa no próprio pneu, que é o limite máximo. Use calibradores de precisão Steels Prolube e confira a pressão ao menos uma vez por semana em frotas de uso intenso. Pneus subcalibrados aumentam o atrito e o consumo de combustível; superclibrados reduzem a área de contato e o desgaste fica irregular.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="insta-cta">
+    <div class="wrap">
+      <div>
+        <h3>Acompanhe a Boell no Instagram</h3>
+        <p>Bastidores, lançamentos e condições especiais em primeira mão — em breve com galeria automática aqui na página.</p>
+      </div>
+      <a class="btn btn-insta" href="https://www.instagram.com/boellrepresentacoes" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        Seguir @boellrepresentacoes
+      </a>
     </div>
   </section>
 
@@ -798,7 +1007,7 @@
             <div class="icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
             <div>
               <h4>E-mail comercial</h4>
-              <p><a href="mailto:comercial@boellrepresentacoes.com.br">comercial@boellrepresentacoes.com.br</a></p>
+              <p><a href="mailto:comercialboell@gmail.com">comercialboell@gmail.com</a></p>
             </div>
           </div>
           <div class="channel">
@@ -870,6 +1079,14 @@
           <span>BOELL Representações</span>
         </div>
         <p>Representação comercial B2B há mais de 35 anos em MRO, ferragens, ferramentas, autopeças e agrícola.</p>
+        <div class="foot-social">
+          <a class="ig" href="https://www.instagram.com/boellrepresentacoes" target="_blank" rel="noopener" aria-label="Instagram da Boell Representações">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a class="wa" href="https://wa.me/5519988383736" target="_blank" rel="noopener" aria-label="WhatsApp da Boell Representações">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Z"/></svg>
+          </a>
+        </div>
       </div>
       <div>
         <h5>Navegação</h5>
@@ -884,15 +1101,16 @@
         <h5>Empresa</h5>
         <ul>
           <li><a href="#diferenciais">Diferenciais</a></li>
-          <li><a href="#novidades">Novidades</a></li>
+          <li><a href="#blog">Blog</a></li>
           <li><a href="#contato">Contato</a></li>
         </ul>
       </div>
       <div>
         <h5>Contato</h5>
         <ul>
-          <li><a href="mailto:comercial@boellrepresentacoes.com.br">comercial@boellrepresentacoes.com.br</a></li>
+          <li><a href="mailto:comercialboell@gmail.com">comercialboell@gmail.com</a></li>
           <li><a href="https://wa.me/5519988383736" target="_blank" rel="noopener">WhatsApp comercial</a></li>
+          <li><a href="https://www.instagram.com/boellrepresentacoes" target="_blank" rel="noopener">Instagram @boellrepresentacoes</a></li>
           <li>Interior de São Paulo</li>
         </ul>
       </div>
@@ -910,6 +1128,10 @@
 </a>
 
 <!-- Mascot chat -->
+<div class="mascot-hint" id="mascot-hint" role="status">
+  <button class="mascot-hint-close" id="mascot-hint-close" aria-label="Fechar aviso">×</button>
+  <p>Oi! 👋 Sou o mascote da Boell. Tem alguma dúvida? Clica aqui que eu te ajudo!</p>
+</div>
 <button class="mascot-toggle" id="mascot-toggle" aria-haspopup="dialog" aria-expanded="false" aria-controls="chat-panel" aria-label="Abrir assistente virtual da Boell">
   <img src="data:image/jpeg;base64,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" alt="">
   <span class="dot" aria-hidden="true"></span>
@@ -974,7 +1196,7 @@
       mensagem
     ].join('\n');
 
-    var mailto = 'mailto:comercial@boellrepresentacoes.com.br'
+    var mailto = 'mailto:comercialboell@gmail.com'
       + '?subject=' + encodeURIComponent('Contato pelo site — ' + interesse)
       + '&body=' + encodeURIComponent(body);
 
@@ -1008,6 +1230,8 @@
     var form = document.getElementById('chat-form');
     var input = document.getElementById('chat-input');
     var chips = document.getElementById('chat-chips');
+    var hint = document.getElementById('mascot-hint');
+    var hintClose = document.getElementById('mascot-hint-close');
     var opened = false;
     var greeted = false;
 
@@ -1037,7 +1261,21 @@
       { k: ['horario','horário','funciona','atende'],
         a: 'Nosso atendimento comercial funciona de <b>segunda a sexta, das 8h às 18h</b>.' },
       { k: ['contato','email','e-mail','telefone','whatsapp'],
-        a: 'Você pode falar com a gente pelo WhatsApp (19) 98838-3736, por e-mail em comercial@boellrepresentacoes.com.br, ou pelo formulário na aba "Contato".' },
+        a: 'Você pode falar com a gente pelo WhatsApp (19) 98838-3736, por e-mail em comercialboell@gmail.com, ou pelo formulário na aba "Contato".' },
+      { k: ['instagram','rede social','redes sociais','segue','seguir'],
+        a: 'Estamos no Instagram! Segue a gente em <b>@boellrepresentacoes</b> para acompanhar bastidores, lançamentos e condições especiais.' },
+      { k: ['blog','dica','dicas','artigo','manutencao preventiva','manutenção preventiva'],
+        a: 'No nosso <b>Blog</b> você encontra dicas de uso e manutenção separadas por marca — CMB, Milwaukee, Bovenau, Maqtron e Steels Prolube. Dá uma olhada na aba "Blog" aqui na página.' },
+      { k: ['m12','m18','fuel','bateria','esmerilhadeira','impacto','sawzall','serra'],
+        a: 'A Milwaukee tem os sistemas a bateria <b>M12™ e M18™ FUEL™</b>, além de esmerilhadeiras, chaves de impacto e serras SAWZALL® para uso profissional pesado.' },
+      { k: ['betoneira','moenda','picador','desintegrador','ensiladeira','agricola','agrícola'],
+        a: 'A Maqtron tem linha agrícola completa (picadores, desintegradores, ensiladeiras), moendas de cana e betoneiras para construção civil.' },
+      { k: ['bancada','carrinho de ferramentas','gaveteiro'],
+        a: 'Além dos armários, a CMB também tem bancadas de trabalho, carrinhos de ferramentas com gavetas e gaveteiros modulares — tudo pensado para o chão de fábrica.' },
+      { k: ['prensa','cavalete','guincho'],
+        a: 'A Bovenau também fabrica prensas hidráulicas, cavaletes e guinchos hidráulicos dobráveis, além dos macacos e talhas.' },
+      { k: ['carreta','betoneira','chassis'],
+        a: 'A Maqtron oferece carretas de madeira, metálicas e caçamba, além de chassis e componentes complementares para seus equipamentos.' },
       { k: ['quem sao','quem são','historia','história','quantos anos','fundada','sobre'],
         a: 'A Boell Representações atua há <b>mais de 35 anos</b> conectando indústria e comércio no B2B de MRO, ferragens, ferramentas, autopeças e agro. Dá uma olhada na aba "Quem somos" para a história completa.' },
       { k: ['oi','ola','olá','bom dia','boa tarde','boa noite','tudo bem'],
@@ -1083,6 +1321,7 @@
       panel.setAttribute('aria-hidden', 'false');
       toggle.setAttribute('aria-expanded', 'true');
       opened = true;
+      if (hint) hint.classList.remove('show');
       if (!greeted){
         greeted = true;
         addMessage('Oi! 👋 Sou o assistente virtual da Boell. Posso te ajudar com informações sobre marcas, produtos, áreas de atuação ou como falar com nosso time. O que você quer saber?', 'bot');
@@ -1120,8 +1359,63 @@
       input.value = '';
       botReply(text);
     });
+
+    // Speech-bubble hint that pops up from the mascot's own avatar, as if he were starting the conversation
+    if (hint){
+      setTimeout(function(){
+        if (!opened) hint.classList.add('show');
+      }, 2200);
+      hint.addEventListener('click', function(e){
+        if (hintClose && (e.target === hintClose || hintClose.contains(e.target))) return;
+        hint.classList.remove('show');
+        openChat();
+      });
+      if (hintClose){
+        hintClose.addEventListener('click', function(e){
+          e.stopPropagation();
+          hint.classList.remove('show');
+        });
+      }
+    }
+  })();
+
+  // Hero parallax on mouse move (desktop only, respects reduced-motion)
+  (function(){
+    var hero = document.querySelector('.hero');
+    var plate = document.querySelector('.hero-art .plate');
+    if (!hero || !plate) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var coarse = window.matchMedia('(pointer: coarse)').matches;
+    if (reduce || coarse) return;
+    hero.addEventListener('mousemove', function(e){
+      var r = hero.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width - 0.5;
+      var y = (e.clientY - r.top) / r.height - 0.5;
+      plate.style.transform = 'rotate(1deg) translate(' + (x * -14) + 'px,' + (y * -10) + 'px)';
+    });
+    hero.addEventListener('mouseleave', function(){
+      plate.style.transform = 'rotate(1deg) translate(0,0)';
+    });
+  })();
+
+  // Blog filter chips
+  (function(){
+    var filters = document.getElementById('blog-filters');
+    var grid = document.getElementById('blog-grid');
+    if (!filters || !grid) return;
+    var cards = grid.querySelectorAll('.blog-card');
+    filters.addEventListener('click', function(e){
+      var btn = e.target.closest('.blog-filter');
+      if (!btn) return;
+      filters.querySelectorAll('.blog-filter').forEach(function(b){ b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.getAttribute('data-filter');
+      cards.forEach(function(c){
+        var show = (f === 'todas' || c.getAttribute('data-brand') === f);
+        c.style.display = show ? '' : 'none';
+      });
+    });
   })();
 </script>
 
-</body>
 </html>
